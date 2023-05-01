@@ -4,5 +4,8 @@
     "nodemon": "^2.0.22",
     "uuid": "^9.0.0",
     "yarn": "^1.22.19"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
   }
 }
