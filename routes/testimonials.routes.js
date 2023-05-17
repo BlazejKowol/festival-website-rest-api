@@ -10,14 +10,14 @@ router.route('/testimonials').get((req, res) => {
   res.json(db.testimonials);
 });
 
+router.route('/testimonials/random').get((req, res) => {
+    const random = Math.floor(Math.random() * db.testimonials.length);
+    res.json(db.testimonials[random]);
+});
+
 router.route('/testimonials/:id').get((req, res) => {
     const testimonial = db.testimonials.find(item => item.id === parseInt(req.params.id));
     res.json(testimonial);
-});
-
-router.route('/testimonials/random').get((req, res) => {
-    const random = Math.floor(Math.random() * db.testimonials.length);
-    res.json(db.testimonials[random]); // Why not working? empty site
 });
 
 router.route('/testimonials').post((req, res) => {
@@ -32,13 +32,13 @@ router.route('/testimonials/:id').put((req, res) => {
     let changedTestimonial = db.testimonials.find(item => item.id === parseInt(req.params.id));
     changedTestimonial.author = author;
     changedTestimonial.text = text;
-    res.json({ message: 'ok' }) // Why not working? Res: 404 not found...
+    res.json({ message: 'ok' })
 });
 
 router.route('/testimonials/:id').delete((req, res) => {
     const id = parseInt(req.params.id);
     db.testimonials.splice(id);
-    res.json({ message: 'ok' }) // Why not working? Res: 404 not found...
+    res.json({ message: 'ok' })
 });
 
 module.exports = router;
