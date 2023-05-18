@@ -40,8 +40,7 @@ exports.post = async (req, res) => {
 
     try {
     const { author, text } = req.body;
-    const newTestimonial = new Testimonial(
-        { author: author, text: text })
+    const newTestimonial = new Testimonial({ author: author, text: text })
     await newTestimonial.save();
     res.json({message: 'ok' })
     } catch(err) {
@@ -52,8 +51,7 @@ exports.post = async (req, res) => {
 exports.put = async (req, res) => {
     const { author, text } = req.body;
     try {
-        await Testimonial.updateOne(
-            { _id: req.params.id}, {$set: { author: author, text: text }});
+        await Testimonial.updateOne({ _id: req.params.id}, {$set: { author: author, text: text }});
         res.json({ message: 'ok' })
     } 
     catch(err) {
