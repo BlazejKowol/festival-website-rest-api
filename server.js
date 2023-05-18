@@ -24,7 +24,7 @@ app.use('/api', concertsRoutes);
 app.use('/api', seatsRoutes);
 
 // connects our backend code with the database
-mongoose.connect('mongodb+srv://kowolblazej:L0qE1EZr3l0GEox5@cluster1.7cvqbd6.mongodb.net/NewWaveDB', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://user1:user1password@cluster1.7cvqbd6.mongodb.net/NewWaveDB', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.once('open', () => {
