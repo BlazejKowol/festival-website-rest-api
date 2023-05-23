@@ -38,7 +38,7 @@ exports.post = async (req, res) => {
         await newSeat.save();
         const seats = await Seat.find();
         req.io.emit('seatsUpdated', seats);
-        res.json({message: 'ok' })
+        res.json(newSeat)
       }
     } catch(err) {
         console.log('err', err)

@@ -29,7 +29,7 @@ let dbUri = '';
 
 if(NODE_ENV === 'production') dbUri = 'mongodb+srv://user1:user1password@cluster1.7cvqbd6.mongodb.net/NewWaveDB';
 else if(NODE_ENV === 'test') dbUri = 'mongodb://localhost:27017/NewWaveDBtest';
-//else dbUri = 'mongodb://localhost:27017/NewWaveDB';
+else dbUri = 'mongodb://localhost:27017/NewWaveDB';
 
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
