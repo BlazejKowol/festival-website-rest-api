@@ -28,8 +28,6 @@ exports.post = async (req, res) => {
     const { day, seat, client, email } = req.body;
     if(day, seat, client, email ) {
         try {
-        const selectedDay = await Seat.find({day: day})
-        const selectedSeats = selectedDay.find({seat: seat});
         const selectedSeat = await Seat.findOne({$and: [{day: day}, {seat: seat}]});
         if(selectedSeat) {
           res.status(400).json({ message: 'The slot is already taken...' })
@@ -43,6 +41,7 @@ exports.post = async (req, res) => {
         res.json({message: 'ok' })
       }
     } catch(err) {
+        console.log('err', err)
         res.status(500).json({ message: err });
       }
     }

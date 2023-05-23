@@ -24,11 +24,18 @@ app.use('/api', concertsRoutes);
 app.use('/api', seatsRoutes);
 
 // connects our backend code with the database
-mongoose.connect('mongodb+srv://user1:user1password@cluster1.7cvqbd6.mongodb.net/NewWaveDB', { useNewUrlParser: true, useUnifiedTopology: true });
+const NODE_ENV = process.env.NODE_ENV;
+let dbUri = '';
+
+if(NODE_ENV === 'production') dbUri = 'mongodb+srv://user1:user1password@cluster1.7cvqbd6.mongodb.net/NewWaveDB';
+else if(NODE_ENV === 'test') dbUri = 'mongodb://localhost:27017/NewWaveDBtest';
+//else dbUri = 'mongodb://localhost:27017/NewWaveDB';
+
+mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.once('open', () => {
-  console.log('Connected to the database'); //działa
+  console.log('Connected to the database');
  });
  db.on('error', err => console.log('Error ' + err));     
 
@@ -48,3 +55,5 @@ const io = socket(server);
 io.on('connection', (socket) => {
   console.log('New Socket' + socket);
 });
+
+module.exports = server;
